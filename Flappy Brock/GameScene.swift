@@ -71,7 +71,20 @@ class GameScene: SKScene {
         topWall.physicsBody = SKPhysicsBody(rectangleOf: topWall.size)
         topWall.physicsBody?.categoryBitMask =  PhysicsCatagory.Wall
         topWall.physicsBody?.collisionBitMask = PhysicsCatagory.Ghost
-        topWall.physicsBody?.contactTestBitMask = PhysicsCatagory.Ground
+        topWall.physicsBody?.contactTestBitMask = PhysicsCatagory.Ghost
+        topWall.physicsBody?.isDynamic = false
+        topWall.physicsBody?.affectedByGravity = false
+        
+        btmWall.physicsBody?.categoryBitMask = PhysicsCatagory.Wall
+        btmWall.physicsBody?.collisionBitMask = PhysicsCatagory.Ghost
+        btmWall.physicsBody?.contactTestBitMask = PhysicsCatagory.Ghost
+        btmWall.physicsBody?.isDynamic = false
+        topWall.physicsBody?.affectedByGravity = false
+        
+        wallPair.zPosition = 1
+        
+        wallPair.addChild(topWall)
+        wallPair.addChild(btmWall)
         
         self.addChild(wallPair)
     }
