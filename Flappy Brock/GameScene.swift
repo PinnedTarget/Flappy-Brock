@@ -20,6 +20,11 @@ class GameScene: SKScene {
     var Ground = SKSpriteNode()
     var Ghost = SKSpriteNode()
     
+     var wallPair = SKNode()
+    
+    var moveAndRemove = SKAction()
+    var gameStarted = Bool()
+    
     override func didMove(to view: SKView) {
         
         //Ground
@@ -46,14 +51,28 @@ class GameScene: SKScene {
         Ghost.physicsBody?.affectedByGravity = true
         Ghost.physicsBody?.isDynamic = true
         
+        
         self.addChild(Ghost)
         
-        createWalls()
+       let spawn = SKAction.run({
+            () in
+            
+        })
+        let delay = SKAction.wait(forDuration: 2.0)
+        let SpawnDelay = SKAction.sequence([spawn, delay])
+        let spawnDelayForever = SKAction.repeatForever(SpawnDelay)
+        self.run(spawnDelayForever)
         
-}
+        let distance = CGFloat(self.frame.width + wallPair.frame.width)
+        let movePipes = SKAction.moveBy(x: -distance, y: 0, duration: TimeInterval(0.01 * distance))
+        let removePipes = SKAction.removeFromParent()
+        moveAndRemove = SKAction.sequence([<#T##actions: [SKAction]##[SKAction]#>])
+        
+        
+
     func createWalls(){
-        let wallPair = SKNode()
-        
+       
+  wallPair = SKNode()
         let topWall = SKSpriteNode(imageNamed: "Wall")
         let btmWall = SKSpriteNode(imageNamed: "Wall")
         
@@ -89,15 +108,15 @@ class GameScene: SKScene {
         self.addChild(wallPair)
     }
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         print("Touched")
-        Ghost.physicsBody?.velocity = (CGVector(dx: 0, dy: 0))
-        Ghost.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 90))
-    
-
+            
+            Ghost.physicsBody?.velocity = (CGVector(dx: 0, dy: 0))
+            Ghost.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 90))
 }
     func createOb(){
         //For John
     }
 }
 
+}
