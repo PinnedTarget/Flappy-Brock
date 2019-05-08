@@ -37,7 +37,6 @@ class GameScene: SKScene {
         Ground.physicsBody?.contactTestBitMask = PhysicsCatagory.Ghost
         Ground.physicsBody?.affectedByGravity = false
         Ground.physicsBody?.isDynamic = false
-        print("Hi")
         
         //Ghost
         Ghost = SKSpriteNode(imageNamed: "Ghost")
@@ -82,8 +81,8 @@ class GameScene: SKScene {
         topWall.setScale(0.5)
         btmWall.setScale(0.5)
         
-        wallPair.addChild(topWall)
-        wallPair.addChild(btmWall)
+       // wallPair.addChild(topWall)
+      //  wallPair.addChild(btmWall)
         
         topWall.zRotation = CGFloat(M_PI)
         
@@ -94,6 +93,7 @@ class GameScene: SKScene {
         topWall.physicsBody?.isDynamic = false
         topWall.physicsBody?.affectedByGravity = false
         
+        btmWall.physicsBody = SKPhysicsBody(rectangleOf: btmWall.size)
         btmWall.physicsBody?.categoryBitMask = PhysicsCatagory.Wall
         btmWall.physicsBody?.collisionBitMask = PhysicsCatagory.Ghost
         btmWall.physicsBody?.contactTestBitMask = PhysicsCatagory.Ghost
