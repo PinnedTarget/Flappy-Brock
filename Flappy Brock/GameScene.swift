@@ -66,7 +66,7 @@ class GameScene: SKScene {
         let distance = CGFloat(self.frame.width + wallPair.frame.width)
         let movePipes = SKAction.moveBy(x: -distance, y: 0, duration: TimeInterval(0.01 * distance))
         let removePipes = SKAction.removeFromParent()
-        moveAndRemove = SKAction.sequence([<#T##actions: [SKAction]##[SKAction]#>])
+        //moveAndRemove = SKAction.sequence([<#T##actions: [SKAction]##[SKAction]#>])
         
         
 
