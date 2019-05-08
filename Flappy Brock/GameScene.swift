@@ -36,7 +36,7 @@ class GameScene: SKScene {
         Ground.physicsBody?.collisionBitMask = PhysicsCatagory.Ghost
         Ground.physicsBody?.contactTestBitMask = PhysicsCatagory.Ghost
         Ground.physicsBody?.affectedByGravity = false
-        Ground.physicsBody?.isDynamic = false
+        Ground.physicsBody?.isDynamic = true
         
         //Ghost
         Ghost = SKSpriteNode(imageNamed: "Ghost")
@@ -77,14 +77,14 @@ class GameScene: SKScene {
             topWall.physicsBody?.categoryBitMask =  PhysicsCatagory.Wall
             topWall.physicsBody?.collisionBitMask = PhysicsCatagory.Ghost
             topWall.physicsBody?.contactTestBitMask = PhysicsCatagory.Ghost
-            topWall.physicsBody?.isDynamic = false
+            topWall.physicsBody?.isDynamic = true
             topWall.physicsBody?.affectedByGravity = false
             
             btmWall.physicsBody = SKPhysicsBody(rectangleOf: btmWall.size)
             btmWall.physicsBody?.categoryBitMask = PhysicsCatagory.Wall
             btmWall.physicsBody?.collisionBitMask = PhysicsCatagory.Ghost
             btmWall.physicsBody?.contactTestBitMask = PhysicsCatagory.Ghost
-            btmWall.physicsBody?.isDynamic = false
+            btmWall.physicsBody?.isDynamic = true
             topWall.physicsBody?.affectedByGravity = false
             
             self.addChild(wallPair)
@@ -92,6 +92,8 @@ class GameScene: SKScene {
     
         func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         if gameStarted == false{
+            
+            gameStarted = true
             let spawn = SKAction.run({
                 () in
             })
