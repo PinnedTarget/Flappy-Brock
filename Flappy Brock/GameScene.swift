@@ -20,6 +20,9 @@ class GameScene: SKScene {
     var Ground = SKSpriteNode()
     var Ghost = SKSpriteNode()
     
+    var moveAndRemove = SKAction()
+    var gameStarted = Bool()
+    
     override func didMove(to view: SKView) {
         
         //Ground
@@ -62,11 +65,9 @@ class GameScene: SKScene {
         topWall.setScale(0.5)
         btmWall.setScale(0.5)
         
-       // wallPair.addChild(topWall)
-      //  wallPair.addChild(btmWall)
         
         topWall.zRotation = CGFloat(M_PI)
-        
+        /*
         topWall.physicsBody = SKPhysicsBody(rectangleOf: topWall.size)
         topWall.physicsBody?.categoryBitMask =  PhysicsCatagory.Wall
         topWall.physicsBody?.collisionBitMask = PhysicsCatagory.Ghost
@@ -80,7 +81,7 @@ class GameScene: SKScene {
         btmWall.physicsBody?.contactTestBitMask = PhysicsCatagory.Ghost
         btmWall.physicsBody?.isDynamic = false
         topWall.physicsBody?.affectedByGravity = false
-        
+        */
         wallPair.zPosition = 1
         
         wallPair.addChild(topWall)
