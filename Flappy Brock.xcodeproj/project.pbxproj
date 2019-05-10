@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3CFB6F2C228467DD005DD179 /* Main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CFB6F2B228467DD005DD179 /* Main.swift */; };
 		DA42D39D22709E8A00A2984F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA42D39C22709E8A00A2984F /* AppDelegate.swift */; };
 		DA42D3A322709E8A00A2984F /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA42D3A222709E8A00A2984F /* GameScene.swift */; };
 		DA42D3A522709E8A00A2984F /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA42D3A422709E8A00A2984F /* GameViewController.swift */; };
@@ -16,6 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3CFB6F2B228467DD005DD179 /* Main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Main.swift; sourceTree = "<group>"; };
 		DA42D39922709E8A00A2984F /* Flappy Brock.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Flappy Brock.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA42D39C22709E8A00A2984F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DA42D3A222709E8A00A2984F /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
@@ -58,6 +60,7 @@
 			children = (
 				DA42D39C22709E8A00A2984F /* AppDelegate.swift */,
 				DA42D3A222709E8A00A2984F /* GameScene.swift */,
+				3CFB6F2B228467DD005DD179 /* Main.swift */,
 				DA42D3A422709E8A00A2984F /* GameViewController.swift */,
 				DA42D3A622709E8A00A2984F /* Main.storyboard */,
 				DA42D3A922709E8A00A2984F /* Assets.xcassets */,
@@ -140,6 +143,7 @@
 			files = (
 				DA42D3A322709E8A00A2984F /* GameScene.swift in Sources */,
 				DA42D3A522709E8A00A2984F /* GameViewController.swift in Sources */,
+				3CFB6F2C228467DD005DD179 /* Main.swift in Sources */,
 				DA42D39D22709E8A00A2984F /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

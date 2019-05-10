@@ -47,12 +47,15 @@ class GameScene: SKScene {
         Ghost.physicsBody?.categoryBitMask = PhysicsCatagory.Ghost
         Ghost.physicsBody?.collisionBitMask = PhysicsCatagory.Ground | PhysicsCatagory.Wall
         Ghost.physicsBody?.contactTestBitMask = PhysicsCatagory.Ground | PhysicsCatagory.Wall
-        Ghost.physicsBody?.affectedByGravity = true
+        Ghost.physicsBody?.affectedByGravity = false
         Ghost.physicsBody?.isDynamic = true
         
-        
+        createWalls()
         self.addChild(Ghost)
         
+        let spawn = SKAction.run({<#T##block: () -> Void##() -> Void#>})
+        
+    }
         func createWalls(){
             
             let wallPair = SKNode()
@@ -60,7 +63,7 @@ class GameScene: SKScene {
             let topWall = SKSpriteNode(imageNamed: "Wall")
             let btmWall = SKSpriteNode(imageNamed: "Wall")
             
-            topWall.position = CGPoint(x: self.frame.width / 2, y: self.frame.height / 2 + 350)
+            topWall.position = CGPoint(x: self.frame.width / 2, y: self.frame.height / 2 + 300)
             btmWall.position = CGPoint(x: self.frame.width / 2, y: self.frame.height / 2 - 350)
             
             topWall.setScale(0.5)
@@ -85,15 +88,17 @@ class GameScene: SKScene {
             btmWall.physicsBody?.collisionBitMask = PhysicsCatagory.Ghost
             btmWall.physicsBody?.contactTestBitMask = PhysicsCatagory.Ghost
             btmWall.physicsBody?.isDynamic = true
-            topWall.physicsBody?.affectedByGravity = false
+            btmWall.physicsBody?.affectedByGravity = false
             
             self.addChild(wallPair)
         }
     
-        func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+       override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         if gameStarted == false{
             
-            gameStarted = true
+            //gameStarted = true
+            
+            Ghost.physicsBody?.affectedByGravity = true
             let spawn = SKAction.run({
                 () in
             })
@@ -111,11 +116,9 @@ class GameScene: SKScene {
         Ghost.physicsBody?.velocity = (CGVector(dx: 0, dy: 0))
         Ghost.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 90))
 }
-    func createOb(){
-        //For John
-    }
+   
 }
 
 
 }
-}
+
