@@ -116,7 +116,9 @@ class GameScene: SKScene {
             topWall.zPosition = CGFloat(M_PI)
             
             wallPair.zPosition = 1
-            
+        
+        var randomPosition = CGFloat.random(min: -200, max: 200)
+        wallPair.position.y = wallPair.position.y + randomPosition
             wallPair.addChild(topWall)
             wallPair.addChild(btmWall)
             
@@ -126,7 +128,7 @@ class GameScene: SKScene {
             topWall.physicsBody?.contactTestBitMask = PhysicsCatagory.Ghost
             topWall.physicsBody?.isDynamic = true
             topWall.physicsBody?.affectedByGravity = false
-        topWall.physicsBody?.applyImpulse(Ghost)
+        
             
             btmWall.physicsBody = SKPhysicsBody(rectangleOf: btmWall.size)
             btmWall.physicsBody?.categoryBitMask = PhysicsCatagory.Wall
