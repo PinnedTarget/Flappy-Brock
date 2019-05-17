@@ -13,9 +13,10 @@ struct PhysicsCatagory {
     static let Ghost : UInt32 = 0x1 << 1
     static let Ground : UInt32 = 0x1 << 2
     static let Wall : UInt32 = 0x1 << 3
+    static let Score : UInt32 = 0x1 << 4
 }
 
-class GameScene: SKScene {
+class GameScene: SKScene, SKPhysicsContactDelegate {
     
     var Ground = SKSpriteNode()
     var Ghost = SKSpriteNode()
@@ -26,6 +27,8 @@ class GameScene: SKScene {
     var gameStarted = Bool()
     
     override func didMove(to view: SKView) {
+        
+        self.physicsWorld.contactDelegate = self
         
         //Ground
         Ground = SKSpriteNode(imageNamed: "Ground")
@@ -50,17 +53,24 @@ class GameScene: SKScene {
         Ghost.physicsBody = SKPhysicsBody(circleOfRadius: Ghost.frame.height / 2)
         Ghost.physicsBody?.categoryBitMask = PhysicsCatagory.Ghost
         Ghost.physicsBody?.collisionBitMask = PhysicsCatagory.Ground | PhysicsCatagory.Wall
-        Ghost.physicsBody?.contactTestBitMask = PhysicsCatagory.Ground | PhysicsCatagory.Wall
+        Ghost.physicsBody?.contactTestBitMask = PhysicsCatagory.Ground | PhysicsCatagory.Wall | PhysicsCatagory.Score
         Ghost.physicsBody?.affectedByGravity = false
         Ghost.physicsBody?.isDynamic = true
         Ghost.zPosition = 2
         
-       
         self.addChild(Ghost)
     }
+    
+    func didBegin(_ contact: SKPhysicsContact) {
+        let firstBody = contact.bodyA
+        let secondBody = contact.bodyB
         
-        
-           override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        if firstBody.categoryBitMask == PhysicsCatagory.Score && secondBody.categoryBitMask == PhysicsCatagory.Ghost || firstBody.categoryBitMask == PhysicsCatagory.Ghost && secondBody.contactTestBitMask == PhysicsCatagory.Score {
+            
+    }
+    }
+    
+        override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
                 if gameStarted == false{
                     gameStarted = true
                     
@@ -77,9 +87,6 @@ class GameScene: SKScene {
                     let spawnDelayForever = SKAction.repeatForever(SpawnDelay)
                     self.run(spawnDelayForever)
                     
-            
-            
-            
             let distance = CGFloat(self.frame.width + wallPair.frame.width)
             let movePipes = SKAction.moveBy(x: -distance, y: 0, duration: TimeInterval(0.008 * distance))
             let removePipes = SKAction.removeFromParent()
@@ -88,19 +95,23 @@ class GameScene: SKScene {
             Ghost.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
             Ghost.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 90))
         }
-                    
-                    
-        
                 else {
-    
                     Ghost.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
                     Ghost.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 90))
-                    
             }
         }
-                    
     
     func createWalls(){
+        
+            let scoreNode = SKSpriteNode()
+        scoreNode.size = CGSize(width: 1, height: 200)
+        scoreNode.position = CGPoint(x: self.frame.width / 2, y: self.frame.height / 2)
+        scoreNode.physicsBody = SKPhysicsBody(rectangleOf: scoreNode.size)
+        scoreNode.physicsBody?.isDynamic = false
+        scoreNode.physicsBody?.affectedByGravity = false
+        scoreNode.physicsBody?.categoryBitMask = PhysicsCatagory.Score
+        scoreNode.physicsBody?.collisionBitMask = 0
+        scoreNode.physicsBody?.contactTestBitMask = PhysicsCatagory.Ghost
         
             wallPair = SKNode()
             
@@ -117,7 +128,7 @@ class GameScene: SKScene {
             
             wallPair.zPosition = 1
         
-        var randomPosition = CGFloat.random(min: -200, max: 200)
+        var randomPosition = CGFloat.random(in: -200...200)
         wallPair.position.y = wallPair.position.y + randomPosition
             wallPair.addChild(topWall)
             wallPair.addChild(btmWall)
@@ -143,8 +154,3 @@ class GameScene: SKScene {
     
    
 }
-
-
-
-
-
