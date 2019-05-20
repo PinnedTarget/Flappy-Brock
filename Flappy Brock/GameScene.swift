@@ -60,7 +60,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         self.addChild(Ghost)
     }
-    
+    //Score Start
     func didBegin(_ contact: SKPhysicsContact) {
         let firstBody = contact.bodyA
         let secondBody = contact.bodyB
@@ -69,7 +69,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
     }
     }
-    
+    //Run Game
         override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
                 if gameStarted == false{
                     gameStarted = true
@@ -78,20 +78,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     
                     let spawn = SKAction.run ({
                         () in
-                        
+                        self.createWalls()
                         
                     })
                     
-                    let delay = SKAction.wait(forDuration: 1.5)
+                    let delay = SKAction.wait(forDuration: 2)
                     let SpawnDelay = SKAction.sequence([spawn, delay])
                     let spawnDelayForever = SKAction.repeatForever(SpawnDelay)
                     self.run(spawnDelayForever)
                     
             let distance = CGFloat(self.frame.width + wallPair.frame.width)
-            let movePipes = SKAction.moveBy(x: -distance, y: 0, duration: TimeInterval(0.008 * distance))
+                    let movePipes = SKAction.moveBy(x: -distance - 50, y: 0, duration: TimeInterval(0.008 * distance))
             let removePipes = SKAction.removeFromParent()
             moveAndRemove = SKAction.sequence([movePipes, removePipes])
-            
             Ghost.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
             Ghost.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 90))
         }
@@ -100,9 +99,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     Ghost.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 90))
             }
         }
-    
+    //Wall Spawning
     func createWalls(){
-        
             let scoreNode = SKSpriteNode()
         scoreNode.size = CGSize(width: 1, height: 200)
         scoreNode.position = CGPoint(x: self.frame.width / 2, y: self.frame.height / 2)
@@ -118,8 +116,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             let topWall = SKSpriteNode(imageNamed: "Wall")
             let btmWall = SKSpriteNode(imageNamed: "Wall")
             
-            topWall.position = CGPoint(x: self.frame.width / 2, y: self.frame.height / 2 + 350)
-            btmWall.position = CGPoint(x: self.frame.width / 2, y: self.frame.height / 2 - 350)
+            topWall.position = CGPoint(x: self.frame.width, y: self.frame.height / 2 + 350)
+            btmWall.position = CGPoint(x: self.frame.width, y: self.frame.height / 2 - 350)
             
             topWall.setScale(0.5)
             btmWall.setScale(0.5)
@@ -128,6 +126,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
             wallPair.zPosition = 1
         
+        wallPair.run(moveAndRemove)
+        
+        
+        
+        //Random Height
         var randomPosition = CGFloat.random(in: -200...200)
         wallPair.position.y = wallPair.position.y + randomPosition
             wallPair.addChild(topWall)
@@ -139,18 +142,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             topWall.physicsBody?.contactTestBitMask = PhysicsCatagory.Ghost
             topWall.physicsBody?.isDynamic = true
             topWall.physicsBody?.affectedByGravity = false
+            topWall.physicsBody?.allowsRotation = false
         
-            
             btmWall.physicsBody = SKPhysicsBody(rectangleOf: btmWall.size)
             btmWall.physicsBody?.categoryBitMask = PhysicsCatagory.Wall
             btmWall.physicsBody?.collisionBitMask = PhysicsCatagory.Ghost
             btmWall.physicsBody?.contactTestBitMask = PhysicsCatagory.Ghost
             btmWall.physicsBody?.isDynamic = true
             btmWall.physicsBody?.affectedByGravity = false
+            btmWall.physicsBody?.allowsRotation = false
             
             self.addChild(wallPair)
         }
-    
-    
-   
 }
