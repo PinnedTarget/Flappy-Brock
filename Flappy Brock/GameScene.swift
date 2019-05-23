@@ -33,7 +33,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     var died = Bool()
     
-    var restartBTN = SKSpriteNode(imageNamed: "RestartButton")
+    var restartBTN = SKSpriteNode(imageNamed: "Button")
     
     //Restarts Game
     func restartSecne(){
@@ -46,7 +46,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         print("Game Started")
     }
     
-    //Game Music [wip]
+    //Sounds
     func gameMusic(){
         let backgroundMusic = SKAudioNode(fileNamed: "Sweden")
         backgroundMusic.autoplayLooped = true
@@ -90,12 +90,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     //Starts Game -calling-
     override func didMove(to view: SKView) {
         createSecne()
-        gameMusic()
+        backgroundColor = SKColor.cyan
     }
     
     //Create Reset Button
     func createBTN(){
-        restartBTN = SKSpriteNode(color: SKColor.blue, size: CGSize(width: 200, height: 100))
+        restartBTN = SKSpriteNode(imageNamed: "Button")
+        restartBTN = SKSpriteNode(color: SKColor.lightGray, size: CGSize(width: 200, height: 100))
         restartBTN.position = CGPoint(x: self.frame.width / 2, y: self.frame.height / 2)
         restartBTN.zPosition = 6
         self.addChild(restartBTN)
@@ -109,6 +110,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
        if firstBody.categoryBitMask == PhysicsCatagory.Ghost && secondBody.categoryBitMask == PhysicsCatagory.Ghost || firstBody.categoryBitMask == PhysicsCatagory.Wall && secondBody.categoryBitMask == PhysicsCatagory.Ghost {
         
+        run(SKAction.playSoundFileNamed("OOF.mp3", waitForCompletion: false))
+        
         died = true
         createBTN()
         wallPair.physicsBody?.pinned = true
@@ -120,6 +123,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
                 if gameStarted == false{
                     gameStarted = true
+                    gameMusic()
                     Ghost.physicsBody?.affectedByGravity = true
                     
                     let spawn = SKAction.run ({
@@ -128,13 +132,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                         print("Walls Spawned")
                     })
 
-                    let delay = SKAction.wait(forDuration: 2)
+                    let delay = SKAction.wait(forDuration: 1.5)
                     let SpawnDelay = SKAction.sequence([spawn, delay])
                     let spawnDelayForever = SKAction.repeatForever(SpawnDelay)
                     self.run(spawnDelayForever)
                     
             let distance = CGFloat(self.frame.width + wallPair.frame.width)
-            let movePipes = SKAction.moveBy(x: -distance - 50, y: 0, duration: TimeInterval(0.008 * distance))
+            let movePipes = SKAction.moveBy(x: -distance - 50, y: 0, duration: TimeInterval(0.009 * distance))
             let removePipes = SKAction.removeFromParent()
             moveAndRemove = SKAction.sequence([movePipes, removePipes])
             Ghost.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
@@ -146,6 +150,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     else{
                     Ghost.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
                     Ghost.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 90))
+                    run(SKAction.playSoundFileNamed("jump.mp3", waitForCompletion: false))
                     }
             }
             for touch in touches{

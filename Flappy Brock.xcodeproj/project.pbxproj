@@ -14,7 +14,10 @@
 		DA42D3A822709E8A00A2984F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA42D3A622709E8A00A2984F /* Main.storyboard */; };
 		DA42D3AA22709E8A00A2984F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DA42D3A922709E8A00A2984F /* Assets.xcassets */; };
 		DA42D3AD22709E8A00A2984F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA42D3AB22709E8A00A2984F /* LaunchScreen.storyboard */; };
+		DA4323782296D67000FB6720 /* jump.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = DA4323772296D67000FB6720 /* jump.mp3 */; };
 		DAA6FA962294406B00CA0906 /* Sweden.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = DAA6FA952294406B00CA0906 /* Sweden.mp3 */; };
+		DAC42BCE2295D8D900B059A0 /* OOF.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = DAC42BCD2295D8D900B059A0 /* OOF.mp3 */; };
+		DACFD95E2295939C00D33297 /* Coin.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = DACFD95D2295939C00D33297 /* Coin.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,7 +30,10 @@
 		DA42D3A922709E8A00A2984F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DA42D3AC22709E8A00A2984F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DA42D3AE22709E8A00A2984F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DA4323772296D67000FB6720 /* jump.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = jump.mp3; path = ../../../Downloads/jump.mp3; sourceTree = "<group>"; };
 		DAA6FA952294406B00CA0906 /* Sweden.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = Sweden.mp3; path = ../../../Downloads/Sweden.mp3; sourceTree = "<group>"; };
+		DAC42BCD2295D8D900B059A0 /* OOF.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = OOF.mp3; path = ../../../Downloads/OOF.mp3; sourceTree = "<group>"; };
+		DACFD95D2295939C00D33297 /* Coin.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = Coin.mp3; path = ../../../Downloads/Coin.mp3; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,6 +53,9 @@
 				DA42D39B22709E8A00A2984F /* Flappy Brock */,
 				DA42D39A22709E8A00A2984F /* Products */,
 				DAA6FA952294406B00CA0906 /* Sweden.mp3 */,
+				DACFD95D2295939C00D33297 /* Coin.mp3 */,
+				DAC42BCD2295D8D900B059A0 /* OOF.mp3 */,
+				DA4323772296D67000FB6720 /* jump.mp3 */,
 			);
 			sourceTree = "<group>";
 		};
@@ -133,6 +142,9 @@
 			files = (
 				DA42D3A822709E8A00A2984F /* Main.storyboard in Resources */,
 				DA42D3AA22709E8A00A2984F /* Assets.xcassets in Resources */,
+				DACFD95E2295939C00D33297 /* Coin.mp3 in Resources */,
+				DAC42BCE2295D8D900B059A0 /* OOF.mp3 in Resources */,
+				DA4323782296D67000FB6720 /* jump.mp3 in Resources */,
 				DAA6FA962294406B00CA0906 /* Sweden.mp3 in Resources */,
 				DA42D3AD22709E8A00A2984F /* LaunchScreen.storyboard in Resources */,
 			);
