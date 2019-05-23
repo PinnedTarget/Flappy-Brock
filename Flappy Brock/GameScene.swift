@@ -95,7 +95,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     //Create Reset Button
     func createBTN(){
-        restartBTN = SKSpriteNode(imageNamed: "Button")
         restartBTN = SKSpriteNode(color: SKColor.lightGray, size: CGSize(width: 200, height: 100))
         restartBTN.position = CGPoint(x: self.frame.width / 2, y: self.frame.height / 2)
         restartBTN.zPosition = 6
